@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1><%= title %></h1>
+    <table>
+        <thead>
+            <tr>
+                <% if (type === 'patients') { %>
+                    <th>Patient ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Date of Birth</th>
+                <% } else if (type === 'providers') { %>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Specialty</th>
+                <% } %>
+            </tr>
+        </thead>
+        <tbody>
+            <% results.forEach(row => { %>
+                <tr>
+                    <% if (type === 'patients') { %>
+                        <td><%= row.patient_id %></td>
+                        <td><%= row.first_name %></td>
+                        <td><%= row.last_name %></td>
+                        <td><%= row.date_of_birth %></td>
+                    <% } else if (type === 'providers') { %>
+                        <td><%= row.first_name %></td>
+                        <td><%= row.last_name %></td>
+                        <td><%= row.provider_specialty %></td>
+                    <% } %>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>
